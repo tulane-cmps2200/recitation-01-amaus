@@ -25,20 +25,15 @@ def binary_search(mylist, key):
 	return _binary_search(mylist, key, 0, len(mylist)-1)
 
 def _binary_search(mylist, key, left, right):
-	"""
-	Recursive implementation of binary search.
-
-	Params:
-	  mylist....list to search
-	  key.......search key
-	  left......left index into list to search
-	  right.....right index into list to search
-
-	Returns:
-	  index of key in mylist, or -1 if not present.
-	"""
-	### TODO
-	pass
+  if right < left:
+    return -1
+  mid_index = (left + right) // 2
+  if mylist[mid_index] == key:
+    return mid_index
+  elif key < mylist[mid_index]:
+    return _binary_search(mylist, key, left, mid_index-1)
+  else:
+    return _binary_search(mylist, key, mid_index+1, right)
 
 def test_binary_search():
 	assert binary_search([1,2,3,4,5], 5) == 4
